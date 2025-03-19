@@ -6,6 +6,7 @@ body {
     padding: 0;
     color: #333;
     background: #f4f4f4;
+    overflow-x: hidden;
 }
 
 .container {
@@ -32,78 +33,143 @@ a {
     background: #6a11cb;
     color: #fff;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
     background: #2575fc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Section */
 #hero {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: #fff;
-    padding: 100px 0;
+    padding: 150px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .hero-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-text {
     max-width: 600px;
     text-align: left;
+    animation: fadeInLeft 1s ease-out;
 }
 
 .hero-text h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 10px;
+    line-height: 1.2;
 }
 
 .hero-text p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 20px;
 }
 
 .hero-image img {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border: 4px solid #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeInRight 1s ease-out;
+}
+
+/* Background Animation for Hero */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10.01%);
+    background-size: 20px 20px;
+    animation: moveBackground 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes moveBackground {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200px);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* About Section */
 #about {
     background: #fff;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 #about p {
     font-size: 1.1rem;
     line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* Experience Section */
 #experience {
     background: #f4f4f4;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .experience-item {
     background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .experience-item h3 {
     margin-bottom: 10px;
+    color: #6a11cb;
 }
 
 .experience-item ul {
@@ -117,29 +183,31 @@ a {
 /* Projects Section */
 #projects {
     background: #fff;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 30px;
 }
 
 .project {
     background: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .project h3 {
     margin-bottom: 10px;
+    color: #2575fc;
 }
 
 .project ul {
@@ -159,31 +227,32 @@ a {
 /* Skills Section */
 #skills {
     background: #f4f4f4;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 30px;
 }
 
 .skill {
     background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .skill i {
-    font-size: 2rem;
-    color: #153288;
+    font-size: 2.5rem;
+    color: #6a11cb;
     margin-bottom: 10px;
 }
 
@@ -207,7 +276,7 @@ a {
 /* Certifications Section */
 #certifications {
     background: #fff;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 #certifications ul {
@@ -217,34 +286,49 @@ a {
 
 #certifications ul li {
     background: #f4f4f4;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#certifications ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Contact Section */
 #contact {
     background: #f4f4f4;
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 #contact form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 #contact input,
 #contact textarea {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: #6a11cb;
+    outline: none;
 }
 
 #contact textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
 #contact button {
@@ -253,10 +337,10 @@ a {
 
 /* Footer */
 footer {
-    background: hwb(237 7% 20%);
-    color: hsla(0, 0%, 100%, 0.882);
+    background: #6a11cb;
+    color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
 }
 
 .social-links {
@@ -271,5 +355,5 @@ footer {
 }
 
 .social-links a:hover {
-    color: #6a11cb;
+    color: #2575fc;
 }
